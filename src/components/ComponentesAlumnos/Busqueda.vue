@@ -117,7 +117,7 @@
             initialize() {
                 this.datos = [
                     {
-                        nombre: 'rafael maldonado',
+                        nombre: 'jesus manuel',
                         curso: '1334235235',
                         responsable: "arc@gmail.com",
                         fechaA: '30101020',

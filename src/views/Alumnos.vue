@@ -44,6 +44,7 @@
                                             :rules="[v => !!v || 'You must agree to continue!']"
                                             label="mostrar solo actuales"
                                             required
+                                            color="primary"
                                     ></v-checkbox>
                                 </v-form>
                             </v-card-text>
