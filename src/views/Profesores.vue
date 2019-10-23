@@ -44,8 +44,8 @@
                                 </v-form>
                             </v-card-text>
                             <v-card-actions class="justify-center">
-                                 <BusquedaProfesores nif="nif" nombre="nombre"/>
-                                <v-btn color="primary">Eliminar</v-btn>
+                                 <BusquedaProfesores :nif="nif" :nombre="nombre"/>
+                                <v-btn color="primary">Limpiar</v-btn>
                                 <Nuevo/>
                             </v-card-actions>
                         </v-card>

@@ -66,7 +66,7 @@
 <script>
     import Datos from "./Datos";
     export default {
-        props: ['nombre', 'nif', 'correo', 'telefono'],
+        props: ['nombre', 'curso'],
         name: "BusquedaProfesores",
         data: () => ({
             sheet: false,

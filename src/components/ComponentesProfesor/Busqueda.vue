@@ -26,7 +26,7 @@
 
                                 :headers="headers"
                                 :items="datos"
-                                sort-by="calories"
+                                sort-by="nif"
                                 class="elevation-0"
                                 height="220px"
                         >
@@ -38,14 +38,24 @@
                                         class="mr-2"
                                         @click="deleteItem(item)"
                                 >
-                                    mdi-delete
+                                    mdi-trash-can-outline mdi-24px
                                 </v-icon>
+
                                 <v-icon
                                         small
                                         class="mr-2"
-                                        @click="deleteItem(item)"
+                                        @click="detailsItem(item)"
                                 >
-                                    mdi-calendar-today
+                                    mdi-account-card-details-outline mdi-24px
+                                </v-icon>
+
+
+                                <v-icon
+                                        small
+                                        class="mr-2"
+                                        @click="calendarItem(item)"
+                                >
+                                    mdi-calendar-today mdi-24px
                                 </v-icon>
                             </template>
 
@@ -59,9 +69,11 @@
 
 <script>
     import Datos from "./Datos";
+    import Axios from 'axios';
+
     export default {
 
-        props: ['nombre', 'nif', 'correo', 'telefono'],
+        props: ['nombre', 'nif'],
         name: "BusquedaProfesores",
         data: () => ({
             sheet: false,
@@ -78,22 +90,7 @@
                 {text: 'Telefono', value: 'telefono'},
                 {text: 'Actions', value: 'action', sortable: false},
             ],
-            datos: [],
-            editedIndex: -1,
-            editedItem: {
-                name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0,
-            },
-            defaultItem: {
-                name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0,
-            },
+            datos: []
         }),
         computed: {},
 
@@ -109,20 +106,23 @@
 
         methods: {
             initialize() {
-                this.datos = [
-                    {
-                        nombre: 'jesus manuel',
-                        nif: '1334235235',
-                        correo: "arc@gmail.com",
-                        telefono: '30101020'
-                    }
-                ]
+                Axios.get('http://192.168.43.97:8080/p/profesores').then(response => {
+                    console.log(response);
+                    this.datos = response.data;
+                }).catch(e => {
+                    console.log(e)
+                });
+
             },
 
-            editItem(item) {
+            detailsItem(item) {
                 this.editedIndex = this.desserts.indexOf(item)
                 this.editedItem = Object.assign({}, item)
                 this.dialog = true
+            },
+
+            calendarItem(item) {
+
             },
 
             deleteItem(item) {
@@ -132,7 +132,7 @@
 
 
         },
-        comments:{
+        comments: {
             Datos
         }
     }

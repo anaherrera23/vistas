@@ -6,7 +6,7 @@
                 <div class="col-10 text-truncate mx-auto">
 
 
-                    <h1>Alumnado</h1>
+                    <h1>Clases</h1>
                     <v-divider></v-divider>
                     <br/>
                     <br/>

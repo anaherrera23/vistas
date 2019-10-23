@@ -49,7 +49,7 @@
                                 </v-form>
                             </v-card-text>
                             <v-card-actions class="justify-center">
-                                <BusquedaAlumnos curso="curso" nombre="nombre"/>
+                                <BusquedaAlumnos :curso="curso" :nombre="nombre"/>
                                 <v-btn color="primary">limpiar</v-btn>
                                 <Nuevo/>
                             </v-card-actions>
