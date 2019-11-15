@@ -1,10 +1,10 @@
 <template>
-
+    
 </template>
 
 <script>
     export default {
-        name: "Alumnos"
+        name: "ComponentesMantenimiento_tarifas"
     }
 </script>
 

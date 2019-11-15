@@ -1,13 +1,14 @@
 <template>
     <v-bottom-sheet v-model="sheet">
         <template v-slot:activator="{ on }">
-            <v-btn
-                    color="primary"
-                    dark
-                    v-on="on"
+            <v-icon
+                    color="primary" dark v-on="on"
+                    small
+                    class="mr-2"
+                    @click="deleteItem(item)"
             >
-                Buscar
-            </v-btn>
+                mdi-account-search-outline mdi-36px
+            </v-icon>
         </template>
         <v-sheet class="text-left" height="400px">
             <v-row>
@@ -30,28 +31,37 @@
                                 class="elevation-0"
                                 height="220px"
                         >
-
                             <template v-slot:item.action="{ item }">
+                                <Datos/>
                                 <v-icon
                                         small
                                         class="mr-2"
-                                        @click="editItem(item)"
+                                        @click="detailsItem(item)"
                                 >
-                                    mdi-account-edit
+                                    mdi-account-card-details-outline mdi-24px
                                 </v-icon>
+
                                 <v-icon
                                         small
                                         class="mr-2"
                                         @click="deleteItem(item)"
                                 >
-                                    mdi-delete
+                                    mdi-book-open-page-variant mdi-24px
+                                </v-icon>
+
+                                <v-icon
+                                        small
+                                        class="mr-2"
+                                        @click="checkItem(item)"
+                                >
+                                    mdi-check-outline mdi-24px
                                 </v-icon>
                                 <v-icon
                                         small
                                         class="mr-2"
-                                        @click="deleteItem(item)"
+                                        @click="checkItem(item)"
                                 >
-                                    mdi-calendar-today
+                                    mdi-close-outline mdi-24px
                                 </v-icon>
                             </template>
 
@@ -82,24 +92,9 @@
                 {text: 'Responsable', value: 'responsable'},
                 {text: 'Fecha Alta', value: 'fechaA'},
                 {text: 'Fecha Baja', value: 'fechaB'},
-                {text: 'Actions', value: 'action', sortable: false},
+                {text: 'Acciones', value: 'action', sortable: false},
             ],
             datos: [],
-            editedIndex: -1,
-            editedItem: {
-                name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0,
-            },
-            defaultItem: {
-                name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0,
-            },
         }),
         computed: {},
 

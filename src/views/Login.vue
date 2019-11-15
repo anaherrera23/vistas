@@ -31,7 +31,7 @@
                                     dark
                                     flat
                             >
-                                <v-toolbar-title>Login form</v-toolbar-title>
+                                <v-toolbar-title>Identificacion</v-toolbar-title>
                                 <div class="flex-grow-1"></div>
 
 
@@ -39,24 +39,26 @@
                             <v-card-text>
                                 <v-form>
                                     <v-text-field
-                                            label="Login"
+                                            label="Usuario"
                                             name="login"
                                             prepend-icon="mdi-account"
                                             type="text"
+                                            v-model="username"
                                     ></v-text-field>
 
                                     <v-text-field
                                             id="password"
-                                            label="Password"
+                                            label="Clave"
                                             name="password"
                                             prepend-icon="mdi-lock"
                                             type="password"
+                                            v-model="pass"
                                     ></v-text-field>
                                 </v-form>
                             </v-card-text>
                             <v-card-actions>
                                 <div class="flex-grow-1"></div>
-                                <v-btn color="primary" v-on:click="inicio">Login</v-btn>
+                                <v-btn color="primary" v-on:click="login()">Entrar</v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-col>
@@ -106,12 +108,19 @@
                         </v-dialog>
                     </div>
                 </template>
+                <Dialogo titulo="ERROR" mensaje="credenciales invalidas, porfavor intente nuevamente." :show="dialog"/>
+                <Footer/>
             </v-container>
+
         </v-content>
     </v-app>
 </template>
 <script>
     import NavBar from "../components/core/NavBar";
+    import Dialogo from "../components/core/Dialogo";
+    // import Axios from 'axios';
+    import axios from "../AxiosConfig";
+    import Footer from "../components/core/Footer";
 
     export default {
         name: "Login",
@@ -120,14 +129,32 @@
         },
         data: () => ({
             drawer: null,
-            dialog: true
+            dialog: false,
+            username: '',
+            pass: ''
         }),
-        comments: {
-            barra: NavBar
+        component: {
+            NavBar, Dialogo, Footer
         },
         methods: {
-            inicio: function (event) {
-                this.$router.replace('/inicio');
+            login() {
+
+                axios.post('/auth/login', {user: this.username, password: this.pass})
+                    .then(request => this.loginSuccessful(request))
+                    .catch(() => this.loginFailed())
+            },
+            loginSuccessful(req) {
+                if (!req.data.token) {
+                    this.loginFailed();
+                    return
+                }
+                this.error = false;
+                localStorage.token = req.data.token;
+                this.$router.replace(this.$route.query.redirect || '/inicio');
+            },
+            loginFailed() {
+                this.error = 'Login failed!'
+                delete localStorage.token
             }
         }
     }

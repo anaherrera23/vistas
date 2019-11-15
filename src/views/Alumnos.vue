@@ -1,4 +1,4 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
     <v-app>
         <v-content>
             <NavBar/>
@@ -32,25 +32,25 @@
                                             v-model="nombre"
                                     ></v-text-field>
 
-                                    <v-text-field
-                                            label="curso"
+                                    <v-select
                                             name="curso"
-                                            prepend-icon="mdi-lock"
+                                            prepend-icon="mdi-school"
                                             type="number"
                                             v-model="curso"
-                                    ></v-text-field>
+                                            :items="['1', '2', '3', '4', '5', '6', '7', '8', '9']"
+                                            label="Curso"
+                                    ></v-select>
+
                                     <v-checkbox
                                             v-model="checkbox"
-                                            :rules="[v => !!v || 'You must agree to continue!']"
                                             label="mostrar solo actuales"
-                                            required
                                             color="primary"
                                     ></v-checkbox>
                                 </v-form>
                             </v-card-text>
                             <v-card-actions class="justify-center">
                                 <BusquedaAlumnos :curso="curso" :nombre="nombre"/>
-                                <v-btn color="primary">limpiar</v-btn>
+                                <v-icon color="primary" dark @click="nombre='', curso='', checkbox=false">mdi-pencil-remove-outline mdi-36px</v-icon>
                                 <Nuevo/>
                             </v-card-actions>
                         </v-card>
@@ -58,6 +58,7 @@
 
                 </div>
             </div>
+            <Footer/>
 
         </v-content>
     </v-app>
@@ -65,18 +66,20 @@
 
 <script>
     import NavBar from '../components/core/NavBar';
+    import Footer from "../components/core/Footer";
     import BusquedaAlumnos from "../components/ComponentesAlumnos/Busqueda";
     import Nuevo from "../components/ComponentesAlumnos/Nuevo";
     export default {
         name: "Alumnos",
-        components: {NavBar,BusquedaAlumnos,Nuevo},
+        components: {NavBar,BusquedaAlumnos,Nuevo,Footer},
         methods: {
             buscar: function () {
 
             }
         }, data: () => ({
             nombre:"",
-            curso:""
+            curso:"",
+            checkbox:false
         })
     }
 </script>

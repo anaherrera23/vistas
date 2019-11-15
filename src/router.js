@@ -3,7 +3,9 @@ import Router from 'vue-router'
 
 Vue.use(Router);
 
+//const router = new Router({
 export default new Router({
+
     routes: [
         {
             path: '/inicio',
@@ -19,33 +21,54 @@ export default new Router({
                 return import(/* webpackChunkName: "about" */ './views/Profesores')
             }
         },
-      {
-        path: '/alumnos',
-        name: 'alumnos',
-        component: function () {
-          return import(/* webpackChunkName: "about" */ './views/Alumnos')
+        {
+            path: '/alumnos',
+            name: 'alumnos',
+            component: function () {
+                return import(/* webpackChunkName: "about" */ './views/Alumnos')
+            }
+        },
+        {
+            path: '/clases',
+            name: 'clases',
+            component: function () {
+                return import(/* webpackChunkName: "about" */ './views/Clases')
+            }
+        },
+        {
+            path: '/',
+            name: 'login',
+            component: function () {
+                return import(/* webpackChunkName: "about" */ './views/Login')
+            }
+        },
+        {
+            path: '/mantenimientoT',
+            name: 'mantenimientoT',
+            component: function () {
+                return import(/* webpackChunkName: "about" */ './views/Mantenimiento_tarifas')
+            }
+        },
+        {
+            path: '/mantenimientoA',
+            name: 'mantenimientoA',
+            component: function () {
+                return import(/* webpackChunkName: "about" */ './views/Mantenimiento_asignaturas')
+            }
+        },
+        {
+            path: '/mantenimientoC',
+            name: 'mantenimientoC',
+            component: function () {
+                return import(/* webpackChunkName: "about" */ './views/Mantenimiento_cursos')
+            }
         }
-      },
-      {
-        path: '/clases',
-        name: 'clases',
-        component: function () {
-          return import(/* webpackChunkName: "about" */ './views/Clases')
-        }
-      },
-      {
-        path: '/',
-        name: 'login',
-        component: function () {
-          return import(/* webpackChunkName: "about" */ './views/Login')
-        }
-      },
-      {
-        path: '/mantenimiento',
-        name: 'mantenimiento',
-        component: function () {
-          return import(/* webpackChunkName: "about" */ './views/Mantenimiento')
-        }
-      }
     ]
-})
+});
+
+//Router.beforeEach((to, from, next) => {
+    // ...
+//});
+
+//export default Router;
+

@@ -7,7 +7,7 @@
                 <div class="col-10 text-truncate mx-auto">
                     <h1>Inicio</h1>
                     <v-divider></v-divider>
-                    <p class="text-left">Bienvenido a la aplicacion de gestion de la academia</p>
+                    <p class="text-left">Bienvenido a la herramienta de gestion de sophistas academia</p>
                 </div>
             </div>
             <div class="row ">
@@ -24,6 +24,8 @@
 
                 </v-row>
             </div>
+
+            <Footer/>
         </v-content>
     </v-app>
 
@@ -34,11 +36,12 @@
     import NavBar from '../components/core/NavBar';
     import AltasYBajas from "../components/Graficas/AltasYBajas";
     import Etapas from "../components/Graficas/Etapas";
+    import Footer from "../components/core/Footer";
 
     export default {
         name: "Inicio",
         components: {
-            NavBar, Etapas, AltasYBajas
+            NavBar, Etapas, AltasYBajas, Footer
 
         }
     }

@@ -1,13 +1,14 @@
 <template>
     <v-bottom-sheet v-model="sheet">
         <template v-slot:activator="{ on }">
-            <v-btn
-                    color="primary"
-                    dark
-                    v-on="on"
+            <v-icon
+                    color="primary" dark v-on="on"
+                    small
+                    class="mr-2"
+                    @click="deleteItem(item)"
             >
-                Buscar
-            </v-btn>
+                mdi-account-search-outline mdi-36px
+            </v-icon>
         </template>
         <v-sheet class="text-left" height="400px">
             <v-row>
@@ -71,6 +72,7 @@
     import Datos from "./Datos";
     import Axios from 'axios';
 
+
     export default {
 
         props: ['nombre', 'nif'],
@@ -88,7 +90,7 @@
                 {text: 'Nif', value: 'nif'},
                 {text: 'Correo', value: 'correo'},
                 {text: 'Telefono', value: 'telefono'},
-                {text: 'Actions', value: 'action', sortable: false},
+                {text: 'Acciones', value: 'action', sortable: false},
             ],
             datos: []
         }),
@@ -116,9 +118,9 @@
             },
 
             detailsItem(item) {
-                this.editedIndex = this.desserts.indexOf(item)
-                this.editedItem = Object.assign({}, item)
-                this.dialog = true
+               // this.editedIndex = this.desserts.indexOf(item)
+               // this.editedItem = Object.assign({}, item)
+               // this.dialog = true
             },
 
             calendarItem(item) {
@@ -126,8 +128,8 @@
             },
 
             deleteItem(item) {
-                const index = this.desserts.indexOf(item);
-                confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
+               // const index = this.desserts.indexOf(item);
+               // confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
             },
 
 

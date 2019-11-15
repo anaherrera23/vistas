@@ -1,13 +1,14 @@
 <template>
     <v-bottom-sheet v-model="sheet">
         <template v-slot:activator="{ on }">
-            <v-btn
-                    color="primary"
-                    dark
-                    v-on="on"
+            <v-icon
+                    color="primary" dark v-on="on"
+                    small
+                    class="mr-2"
+                    @click="deleteItem(item)"
             >
-                Buscar
-            </v-btn>
+                mdi-account-search-outline mdi-36px
+            </v-icon>
         </template>
         <v-sheet class="text-left" height="400px">
             <v-row>
@@ -30,23 +31,32 @@
                                 class="elevation-0"
                                 height="220px"
                         >
-
                             <template v-slot:item.action="{ item }">
                                 <Datos/>
                                 <v-icon
                                         small
                                         class="mr-2"
-                                        @click="deleteItem(item)"
+                                        @click="detailsItem(item)"
                                 >
-                                    mdi-delete
+                                    mdi-pencil-circle mdi-24px
                                 </v-icon>
+
                                 <v-icon
                                         small
                                         class="mr-2"
                                         @click="deleteItem(item)"
                                 >
-                                    mdi-calendar-today
+                                    mdi-account-circle mdi-24px
                                 </v-icon>
+
+                                <v-icon
+                                        small
+                                        class="mr-2"
+                                        @click="checkItem(item)"
+                                >
+                                    mdi-delete-circle mdi-24px
+                                </v-icon>
+
                             </template>
 
                         </v-data-table>
@@ -60,40 +70,20 @@
 <script>
     import Datos from "./Datos";
     export default {
-
-        props: ['nombre', 'nif', 'correo', 'telefono'],
-        name: "BusquedaProfesores",
+        props: ['nombre', 'curso'],
+        name: "BusquedaClases",
         data: () => ({
             sheet: false,
             dialog: true,
             headers: [
-                {
-                    text: 'Nombre',
-                    align: 'left',
-                    sortable: true,
-                    value: 'nombre',
-                },
-                {text: 'Nif', value: 'nif'},
-                {text: 'Correo', value: 'correo'},
-                {text: 'Telefono', value: 'telefono'},
-                {text: 'Actions', value: 'action', sortable: false},
+                {text: 'Curso', value: 'curso'},
+                {text: 'Asignatura', value: 'asignatura'},
+                {text: 'Profesor', value: 'profesor'},
+                {text: 'Horario', value: 'horario'},
+                {text: 'Tarifa', value: 'tarifa'},
+                {text: 'Acciones', value: 'action', sortable: false},
             ],
             datos: [],
-            editedIndex: -1,
-            editedItem: {
-                name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0,
-            },
-            defaultItem: {
-                name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0,
-            },
         }),
         computed: {},
 
@@ -111,10 +101,12 @@
             initialize() {
                 this.datos = [
                     {
-                        nombre: 'jesus manuel',
-                        nif: '1334235235',
-                        correo: "arc@gmail.com",
-                        telefono: '30101020'
+                        curso: '1334235235',
+                        asignatura: 'matematica',
+                        profesor: 'jesus manuel',
+                        horario: "arc@gmail.com",
+                        tarifa: '30101020'
+
                     }
                 ]
             },
@@ -132,9 +124,6 @@
 
 
         },
-        comments:{
-            Datos
-        }
     }
 </script>
 

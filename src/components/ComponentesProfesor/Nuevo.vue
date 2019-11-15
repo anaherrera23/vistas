@@ -43,7 +43,7 @@
                                 </v-col>
                             </v-row>
                         </v-container>
-                        <small>* indica campo obligatorio</small>
+                        <small  >* indica campo obligatorio</small>
                     </v-card-text>
                     <v-card-actions>
                         <div class="flex-grow-1"></div>
@@ -74,6 +74,7 @@
             nuevo() {
                 this.dialog = false;
                 Axios.post('http://192.168.43.97:8080/p/profesores',{
+                    id:'',
                     nombre:this.nombre,
                     apellido1:this.apellido1,
                     apellido2:this.apellido2,

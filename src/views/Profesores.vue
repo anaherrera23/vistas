@@ -45,7 +45,7 @@
                             </v-card-text>
                             <v-card-actions class="justify-center">
                                  <BusquedaProfesores :nif="nif" :nombre="nombre"/>
-                                <v-btn color="primary">Limpiar</v-btn>
+                                <v-icon color="primary" dark @click="nombre='', nif=''">mdi-pencil-remove-outline mdi-36px</v-icon>
                                 <Nuevo/>
                             </v-card-actions>
                         </v-card>
@@ -53,7 +53,8 @@
 
                 </div>
             </div>
-
+            <Dialogo titulo="" mensaje="" show=""/>
+            <Footer/>
         </v-content>
     </v-app>
 </template>
@@ -62,9 +63,11 @@
     import NavBar from '../components/core/NavBar';
     import BusquedaProfesores from "../components/ComponentesProfesor/Busqueda";
     import Nuevo from "../components/ComponentesProfesor/Nuevo";
+    import Dialogo from "../components/core/Dialogo";
+    import Footer from "../components/core/Footer";
     export default {
         name: "Profesores",
-        components: {NavBar,BusquedaProfesores,Nuevo},
+        components: {NavBar,BusquedaProfesores,Nuevo,Dialogo,Footer},
         methods: {
             buscar: function () {
 

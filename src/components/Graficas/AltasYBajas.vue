@@ -26,7 +26,7 @@
 
                 // create column chart
                 var chart = anychart.column();
-
+                anychart.theme(anychart.themes.coffee);
                 // turn on chart animation
                 chart.animation(true);
 

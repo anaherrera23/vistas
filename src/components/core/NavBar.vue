@@ -34,20 +34,22 @@
                         vertical
                 ></v-divider>
                 <v-menu>
-                    <template :elevation="0" v-slot:activator="{ on }" >
-                    <v-btn
-                            color="primary"
-                            dark
-                            v-on="on">Mantenimiento
-                    </v-btn>
+                    <template :elevation="0" v-slot:activator="{ on }">
+                        <v-btn
+                                color="primary"
+                                dark
+                                v-on="on">Mantenimiento
+                        </v-btn>
                     </template>
                     <v-list>
-                        <v-list-item
-                                v-for="(item, index) in items"
-                                :key="index"
-                                @click=""
-                        >
-                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                        <v-list-item  @click="mantenimientoC">
+                            <v-list-item-title>Mantenimiento de Cursos</v-list-item-title>
+                        </v-list-item>
+                        <v-list-item @click="mantenimientoA">
+                            <v-list-item-title>Mantenimiento de Asignaturas</v-list-item-title>
+                        </v-list-item>
+                        <v-list-item @click="mantenimientoT">
+                            <v-list-item-title>Mantenimiento de Tarifas</v-list-item-title>
                         </v-list-item>
                     </v-list>
                 </v-menu>
@@ -76,15 +78,18 @@
             clases: function (event) {
                 this.$router.replace('/clases');
             },
-            mantenimiento: function (event) {
-                this.$router.replace('/mantenimiento');
+            mantenimientoC: function (event) {
+                this.$router.replace('/mantenimientoC');
+            },
+            mantenimientoA: function (event) {
+                this.$router.replace('/mantenimientoA');
+            },
+            mantenimientoT: function (event) {
+                this.$router.replace('/mantenimientoT');
             }
 
         }, data: () => ({
             items: [
-                {title: 'Mantenimiento de Cursos'},
-                {title: 'Mantenimiento de Profesores'},
-                {title: 'Mantenimiento de Alumnos'},
 
             ],
         })
