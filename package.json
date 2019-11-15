@@ -17,7 +17,8 @@
     "vue-echarts": "^4.0.4",
     "vue-router": "^3.0.3",
     "vuetify": "^2.1.0",
-    "vuex": "^3.1.1"
+    "vuex": "^3.1.1",
+    "webpack-dev-server": "^3.9.0"
   },
   "devDependencies": {
     "@vue/cli-service": "^3.11.0",
